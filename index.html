@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrenador de Cronogramas</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="app-header__mark">::</div>
+    <div class="app-header__text">
+      <h1>Entrenador de Cronogramas</h1>
+      <p>Practica las reglas de deducción casilla a casilla</p>
+    </div>
+  </header>
+
+  <main class="app-layout">
+
+    <section class="panel panel--grid" aria-label="Tablero">
+      <div class="panel__head">
+        <h2>Tablero</h2>
+      </div>
+
+      <form class="grid-config" id="grid-config-form">
+        <label class="grid-config__field">
+          <span>Filas</span>
+          <input type="number" id="rows-input" min="1" max="25" value="10">
+        </label>
+        <label class="grid-config__field">
+          <span>Columnas</span>
+          <input type="number" id="cols-input" min="1" max="25" value="10">
+        </label>
+        <button type="submit" id="generate-grid-btn" class="btn btn--primary">Generar tablero</button>
+        <button type="button" id="clear-grid-btn" class="btn btn--ghost">Desactivar todo</button>
+      </form>
+
+      <div class="scenario-loader">
+        <label class="scenario-loader__field" for="scenario-select">
+          <span>Plantillas de prueba (solo lectura)</span>
+          <select id="scenario-select" disabled>
+            <option value="">Cargando plantillas…</option>
+          </select>
+        </label>
+        <button type="button" id="load-scenario-btn" class="btn btn--ghost" disabled>Cargar</button>
+      </div>
+
+      <p class="active-line-info" id="active-line-info">
+        Selecciona una fila o una columna en el tablero para empezar.
+      </p>
+      <p class="grid-instructions">
+        Haz clic en la cabecera de una fila (izquierda) o columna (arriba) para abrir la
+        ventana emergente y escribir sus pistas separadas por espacio (ej. <code>1 5 6</code>).
+        La ventana muestra la suma introducida y la longitud total de la línea.
+      </p>
+
+      <div class="grid-wrapper" id="grid-wrapper">
+        <!-- El tablero se genera aquí mediante JS -->
+      </div>
+      <div class="hover-coordinate" id="hover-coordinate" aria-hidden="true"></div>
+    </section>
+
+    <aside class="panel panel--rules" aria-label="Reglas">
+      <div class="panel__head">
+        <h2>Reglas</h2>
+      </div>
+      <p class="rules-hint">
+        Cada regla es un interruptor: al activarla, recorre <strong>todas</strong> las filas
+        y columnas del tablero y pinta las casillas seguras allí donde su condición se cumpla.
+        Al desactivarla, borra solo lo que ella había pintado. Cualquier cambio en las pistas
+        vuelve a recorrer el tablero entero con las reglas que sigan activas.
+      </p>
+      <div class="rules-legend" aria-label="Leyenda de símbolos usados en las fórmulas">
+        <h3 class="rules-legend__title">Leyenda</h3>
+        <dl class="rules-legend__list">
+          <div class="rules-legend__item">
+            <dt><em>n</em></dt>
+            <dd>valor de una pista (longitud de un bloque)</dd>
+          </div>
+          <div class="rules-legend__item">
+            <dt><em>total</em></dt>
+            <dd>longitud de la fila o columna</dd>
+          </div>
+          <div class="rules-legend__item">
+            <dt><em>k</em></dt>
+            <dd>número de bloques (pistas) de la línea</dd>
+          </div>
+          <div class="rules-legend__item">
+            <dt><em>p</em></dt>
+            <dd>margen de movimiento disponible (holgura)</dd>
+          </div>
+          <div class="rules-legend__item">
+            <dt>Σ<em>n</em></dt>
+            <dd>suma de los valores de todas las pistas de la línea</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="rules-list" id="rules-list">
+        <!-- Los botones de reglas se generan aquí mediante JS -->
+      </div>
+    </aside>
+
+  </main>
+
+  <script src="js/ruleManager.js"></script>
+  <script src="js/rules/1-blockComplete.js"></script>
+  <script src="js/rules/2-blockGreaterHalf.js"></script>
+  <script src="js/rules/3-blocksPlusGaps.js"></script>
+  <script src="js/rules/4-blocksGreaterHalf.js"></script>
+  <script src="js/clueEditor.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

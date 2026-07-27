@@ -1,0 +1,27 @@
+NORMA 1: BLOQUE IGUAL AL TOTAL
+Descripcion: Si el bloque es igual al total de celdas, se pinta toda la fila o columna.
+Matematica: n = total
+
+NORMA 2: BLOQUE MAYOR QUE LA MITAD DEL TOTAL
+Descripcion: Si el bloque es mayor que la mitad del total, se dejan celdas vacias en cada extremo y el resto del centro son seguras.
+Matematica: Si n > total / 2, seguras desde (total - n) + 1 hasta n.
+
+NORMA 3: SUMA DE BLOQUES Y ESPACIOS IGUAL AL TOTAL
+Descripcion: Si la suma de bloques mas los espacios obligatorios es igual al total, las posiciones son fijas y seguras.
+Matematica: Suma(bloques) + (n_bloques - 1) = total
+
+NORMA 4: DISTRIBUCION CON SUMA MAYOR QUE LA MITAD
+Descripcion: Si la suma de los bloques es mayor que la mitad del total, el margen de movimiento define las celdas centrales seguras.
+Matematica: p = total - (Suma(bloques) + (n_bloques - 1)); seguras desde (p / 2) + 1 hasta total - (p / 2).
+
+NORMA 5: SUMA DE BLOQUES IGUAL A TOTAL - 1
+Descripcion: Si la suma de los bloques mas espacios es igual al total menos uno, todas son seguras excepto la celda vacia.
+Matematica: Suma(bloques) + (n_bloques - 1) = total - 1
+
+NORMA 6: PATRONES DE BLOQUES UNICOS
+Descripcion: Ciertas combinaciones generan patrones fijos de celdas seguras.
+Matematica: 1-4-1 (total 10): 6 y 7 seguras. 2-3-2 (total 10): 2, 5, 6 y 9 seguras.
+
+NORMA 7: REGLA DE SOLAPAMIENTO
+Descripcion: Si un bloque es grande, las celdas seguras son aquellas que coinciden al desplazar el bloque a sus extremos.
+Matematica: Para bloque k y holgura H = total - L_min, celdas seguras = k - H.

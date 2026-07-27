@@ -1,0 +1,670 @@
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+  --ink: #1c2321;
+  --ink-soft: #4a534f;
+  --paper: #eef1ec;
+  --paper-raised: #ffffff;
+  --grid-line: #c7cec6;
+  --grid-line-strong: #8f9a92;
+  --header-band: #e2e7de;
+  --accent-amber: #d68b1f;
+  --accent-amber-dim: #f2d9ae;
+  --focus-ring: #1c6e73;
+
+  --font-display: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
+  --font-body: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-math: Cambria, "Iowan Old Style", "Times New Roman", Georgia, serif;
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(var(--grid-line) 1px, transparent 1px) 0 0 / 22px 22px,
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 28px;
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper-raised);
+}
+
+.app-header__mark {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent-amber);
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.app-header__text h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.app-header__text p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
+   Layout
+   ============================================================ */
+.app-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  gap: 20px;
+  padding: 24px;
+  align-items: start;
+}
+
+@media (max-width: 880px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--grid-line);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--grid-line);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.panel__head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
+   Grid configuration form
+   ============================================================ */
+.grid-config {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.grid-config__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.grid-config__field input {
+  width: 72px;
+  padding: 6px 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.grid-config__field input:focus,
+.clue-input:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+/* Read-only test-scenario dropdown, sits right under the size form. */
+.scenario-loader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+
+.scenario-loader__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  flex: 1;
+  min-width: 200px;
+}
+
+.scenario-loader__field select {
+  padding: 6px 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.scenario-loader__field select:disabled {
+  color: var(--ink-soft);
+  border-color: var(--grid-line);
+  cursor: not-allowed;
+}
+
+.scenario-loader__field select:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  background: var(--paper);
+  color: var(--ink);
+  transition: transform 0.08s ease, background 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn--ghost {
+  background: transparent;
+}
+
+.active-line-info {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+  padding: 8px 10px;
+  border-left: 3px solid var(--accent-amber);
+  background: var(--accent-amber-dim);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.active-line-info.is-invalid {
+  border-left-color: #a33;
+  background: #f6d6d6;
+  color: #7a1f1f;
+}
+
+/* ============================================================
+   Grid / board
+   ============================================================ */
+.grid-instructions {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: -6px 0 14px;
+  line-height: 1.5;
+}
+
+.grid-instructions code {
+  font-family: var(--font-display);
+  background: var(--paper);
+  border: 1px solid var(--grid-line);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+.grid-wrapper {
+  overflow: auto;
+  padding-bottom: 4px;
+}
+
+/* Small floating label that tracks the cursor while it's over the
+   board (cells or headers), showing which row/column is under it.
+   Fixed positioning + pointer-events:none so it never blocks clicks
+   or interferes with the grid's own hover/selection styles. */
+.hover-coordinate {
+  position: fixed;
+  z-index: 90;
+  padding: 3px 8px;
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(22px, -34px);
+  transition: opacity 0.08s ease;
+  white-space: nowrap;
+}
+
+.hover-coordinate.is-visible {
+  opacity: 0.92;
+}
+
+.crono-grid {
+  display: inline-grid;
+  gap: 2px;
+  background: var(--grid-line);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+}
+
+.grid-corner {
+  background: var(--paper);
+  min-width: 34px;
+  min-height: 34px;
+}
+
+.line-header {
+  background: var(--paper-raised);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 3px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+/* Same every-5 grouping as the grid, but softer here: the header's job
+   is to stay legible, so a tinted background carries the grouping
+   instead of a hard line, plus a thin (not thick) separator to align
+   visually with the stronger line in the cells below/beside it. */
+.line-header--alt-band {
+  background: var(--header-band);
+}
+
+.line-header--col-band-end {
+  border-right: 1px solid var(--grid-line-strong);
+}
+
+.line-header--row-band-end {
+  border-bottom: 1px solid var(--grid-line-strong);
+}
+
+.line-header:hover {
+  background: var(--accent-amber-dim);
+}
+
+.line-header.is-selected {
+  background: var(--accent-amber);
+}
+
+.line-header.is-invalid {
+  background: #f6d6d6;
+}
+
+.line-header.is-selected.is-invalid {
+  background: #eab7ac;
+}
+
+/* Static display of a line's clue numbers inside its header cell.
+   Rows read left-to-right; columns read top-to-bottom. Clicking the
+   whole header cell opens the clue editor popup (see below). */
+.clue-display {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+}
+
+.clue-display--horizontal {
+  flex-direction: row;
+}
+
+.clue-display--vertical {
+  flex-direction: column;
+}
+
+.clue-chip {
+  min-width: 18px;
+  padding: 1px 4px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.clue-chip--placeholder {
+  color: var(--grid-line);
+  font-weight: 400;
+}
+
+.line-header.is-invalid .clue-chip {
+  color: #a33;
+}
+
+.line-header:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: -2px;
+}
+
+.grid-cell {
+  background: var(--paper-raised);
+  transition: background-color 0.15s ease;
+  position: relative;
+}
+
+/* Manual mark set by hand with the mouse (left click = filled, right
+   click = cross). Both are a CSS class, deliberately *not* an inline
+   style, so any active rule's own inline `style.backgroundColor`
+   (see `paintLine` in grid.js) always wins over `.is-manual-filled`
+   without any extra logic — that's the "rules have priority" rule. */
+.grid-cell.is-manual-filled {
+  background-color: var(--ink);
+}
+
+/* The cross only renders while the cell isn't currently claimed by an
+   active rule (`.is-rule-painted`, added in `paintLine`/removed in
+   `clearAllCellColors`) — same priority rule as above, made explicit
+   here because a pseudo-element doesn't compete on `background-color`
+   the way `.is-manual-filled` does. */
+.grid-cell.is-manual-cross:not(.is-rule-painted)::after {
+  content: "×";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink-soft);
+  pointer-events: none;
+}
+
+/* Every BAND_SIZE (5) rows/columns gets a visibly stronger separator,
+   like the thicker lines on graph paper, so it's easy to count cells
+   in groups of five at a glance. */
+.grid-cell--col-band-end {
+  border-right: 2px solid var(--grid-line-strong);
+}
+
+.grid-cell--row-band-end {
+  border-bottom: 2px solid var(--grid-line-strong);
+}
+
+/* ============================================================
+   Rules panel
+   ============================================================ */
+.rules-hint {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+/* Small reference box explaining the symbols (n, total, k, p, Σ) that
+   show up across the rule cards' math formulas — sits above the list
+   so the person can look them up while reading the formulas below. */
+.rules-legend {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border: 1px solid var(--grid-line);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+.rules-legend__title {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.rules-legend__list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.rules-legend__item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.rules-legend__item dt {
+  margin: 0;
+  min-width: 30px;
+  font-family: var(--font-math);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.rules-legend__item dt em {
+  font-style: italic;
+}
+
+.rules-legend__item dd {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rule-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+  padding: 14px;
+  border: 1px solid var(--grid-line);
+  border-left: 6px solid var(--rule-color, var(--ink));
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.08s ease, background 0.15s ease;
+}
+
+.rule-card:hover {
+  transform: translateX(2px);
+}
+
+.rule-card.is-flash,
+.rule-card.is-active {
+  background: var(--rule-color, var(--ink));
+  color: #fff;
+}
+
+.rule-card.is-flash .rule-card__hint,
+.rule-card.is-flash .rule-card__index,
+.rule-card.is-active .rule-card__hint,
+.rule-card.is-active .rule-card__index {
+  color: #fff;
+  opacity: 0.9;
+}
+
+.rule-card__index {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--rule-color, var(--ink));
+  min-width: 22px;
+}
+
+.rule-card__body h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+/* The mathematical condition of the rule, set apart from the rest of
+   the card in a serif "formula" style: upright for numbers/operators,
+   italic only for the variable tokens (n, total) — the classic
+   textbook convention, so it visibly reads as math rather than prose. */
+.rule-card__formula {
+  margin: 0 0 8px;
+  padding: 5px 10px;
+  display: inline-block;
+  font-family: var(--font-math);
+  font-size: 15.5px;
+  letter-spacing: 0.2px;
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: 1px solid var(--grid-line);
+  border-radius: var(--radius-sm);
+}
+
+.rule-card__formula em {
+  font-style: italic;
+  font-weight: 600;
+}
+
+.rule-card.is-flash .rule-card__formula,
+.rule-card.is-active .rule-card__formula {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.rule-card__hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.rule-card__feedback {
+  margin-top: 15px;
+  font-size: 12px;
+  font-style: italic;
+  color: #a33;
+}
+
+/* ============================================================
+   Clue editor popup
+   ============================================================ */
+.clue-popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 35, 33, 0.45);
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 16px;
+}
+
+.clue-popup-overlay.is-open {
+  display: flex;
+}
+
+.clue-popup {
+  width: 100%;
+  max-width: 320px;
+  background: var(--paper-raised);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: 0 12px 30px rgba(28, 35, 33, 0.25);
+}
+
+.clue-popup__title {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.clue-popup__label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+
+.clue-popup__input {
+  font-family: var(--font-display);
+  font-size: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+  color: var(--ink);
+  letter-spacing: 1px;
+}
+
+.clue-popup__input:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+.clue-popup__sum {
+  margin: 0 0 18px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+
+.clue-popup__sum.is-invalid {
+  color: #a33;
+  font-weight: 600;
+}
+
+.clue-popup__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
