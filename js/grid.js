@@ -8,7 +8,7 @@
  * it from scratch whenever anything relevant changes: a rule is
  * toggled, a line's clues are edited, or the board is regenerated.
  */
-window.CronogramApp = window.CronogramApp || {};
+window.NonogramApp = window.NonogramApp || {};
 
 (function (app) {
   "use strict";
@@ -136,7 +136,9 @@ window.CronogramApp = window.CronogramApp || {};
     wrapper.setAttribute("role", "button");
     wrapper.setAttribute(
       "aria-label",
-      type === "row" ? `Editar pistas de la fila ${index + 1}` : `Editar pistas de la columna ${index + 1}`
+      type === "row"
+        ? app.i18n.t("aria_edit_row", { index: index + 1 })
+        : app.i18n.t("aria_edit_col", { index: index + 1 })
     );
 
     const bandClassName = type === "row" ? "line-header--row-band-end" : "line-header--col-band-end";
@@ -173,10 +175,13 @@ window.CronogramApp = window.CronogramApp || {};
     selectLine(type, index);
 
     const total = type === "row" ? state.colCount : state.rowCount;
-    const lineLabel = type === "row" ? `Fila ${index + 1}` : `Columna ${index + 1}`;
+    const lineLabel =
+      type === "row"
+        ? `${app.i18n.t("line_row")} ${index + 1}`
+        : `${app.i18n.t("line_col")} ${index + 1}`;
 
     app.ClueEditor.open({
-      title: `Pistas de la ${lineLabel}`,
+      title: app.i18n.t("clue_editor_title_for_line", { lineLabel }),
       initialValues: getClueValues(type, index),
       total,
       onConfirm(values) {
@@ -314,8 +319,13 @@ window.CronogramApp = window.CronogramApp || {};
    * every currently active rule. This is the only way lines get
    * painted now — there is no notion of a single "active line" rule
    * application anymore.
+   *
+   * Returns structured data rather than a ready-made message: `rule.name`
+   * is a localized `{es, en, fr}` object now, not a plain string, so
+   * building the user-facing text is main.js's job (it has `app.i18n`
+   * readily on hand for that), not grid.js's.
    * @param {Object} rule - rule object from the rule registry
-   * @returns {{success: boolean, message: string}} feedback for the UI
+   * @returns {{success: boolean, isActiveNow: boolean, appliedCount: number}} feedback for the UI
    */
   function toggleRule(rule) {
     const wasActive = state.activeRuleIds.has(rule.id);
@@ -330,11 +340,7 @@ window.CronogramApp = window.CronogramApp || {};
     const appliedCount = appliedCounts.get(rule.id) || 0;
     notifyActiveRulesChange(appliedCounts);
 
-    const message = wasActive
-      ? `Regla "${rule.name}" desactivada.`
-      : `Regla "${rule.name}" activada (aplicada en ${appliedCount} línea${appliedCount === 1 ? "" : "s"}).`;
-
-    return { success: true, message };
+    return { success: true, isActiveNow: !wasActive, appliedCount };
   }
 
   /**
@@ -664,4 +670,4 @@ window.CronogramApp = window.CronogramApp || {};
     onActiveRulesChange,
     getSelectionSummary,
   };
-})(window.CronogramApp);
+})(window.NonogramApp);

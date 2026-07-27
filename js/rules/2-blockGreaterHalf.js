@@ -12,17 +12,17 @@
  * rule would paint the exact same full line that rule 1 already
  * covers, so that case is deliberately excluded here.
  */
-window.CronogramApp = window.CronogramApp || {};
+window.NonogramApp = window.NonogramApp || {};
 
 (function (app) {
   "use strict";
 
   const rule = {
     id: "block-greater-half",
-    name: "Norma mayor que la mitad",
+    name: "rule_block_greater_half_name",
     color: "#1c6e73",
     condition: "total/2 < n < total",
-    hint: "Si total/2 < n y n < total, se pintan las celdas centrales garantizadas.",
+    hint: "rule_block_greater_half_hint",
 
     /**
      * The overlap technique only applies when the block is strictly
@@ -55,4 +55,4 @@ window.CronogramApp = window.CronogramApp || {};
   };
 
   app.registerRule(rule);
-})(window.CronogramApp);
+})(window.NonogramApp);

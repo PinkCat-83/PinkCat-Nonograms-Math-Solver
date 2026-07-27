@@ -16,20 +16,17 @@
  * the two rules never overlap, the same way "Norma mayor que la mitad"
  * excludes `n = total` to avoid duplicating "Norma completa".
  */
-window.CronogramApp = window.CronogramApp || {};
+window.NonogramApp = window.NonogramApp || {};
 
 (function (app) {
   "use strict";
 
   const rule = {
     id: "blocks-plus-gaps-equal-total",
-    name: "Norma suma de bloques y espacios",
+    name: "rule_blocks_plus_gaps_name",
     color: "#94316f",
     condition: "Σn + (k - 1) = total",
-    hint:
-      "Si la suma de todos los bloques de la línea más los huecos obligatorios entre ellos " +
-      "(uno menos que el número de bloques) es igual al total, cada bloque tiene una única " +
-      "posición posible y se pinta.",
+    hint: "rule_blocks_plus_gaps_hint",
     supportsMultipleClues: true,
 
     /**
@@ -83,4 +80,4 @@ window.CronogramApp = window.CronogramApp || {};
   };
 
   app.registerRule(rule);
-})(window.CronogramApp);
+})(window.NonogramApp);

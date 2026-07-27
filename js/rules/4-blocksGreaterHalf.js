@@ -31,20 +31,17 @@
  * the overlap is `[p, n - 1]`, the same range that rule computes with
  * `b = total - n` playing the role of `p`.
  */
-window.CronogramApp = window.CronogramApp || {};
+window.NonogramApp = window.NonogramApp || {};
 
 (function (app) {
   "use strict";
 
   const rule = {
     id: "blocks-distribution-greater-half",
-    name: "Norma distribución con suma mayor que la mitad",
+    name: "rule_blocks_distribution_name",
     color: "#4f7a1c",
     condition: "p = total - (Σn + (k - 1)), p > 0",
-    hint:
-      "Con varios bloques, el margen de movimiento compartido (p) puede desplazarse a un lado " +
-      "u otro. Cada bloque más largo que p tiene un tramo central garantizado; los bloques " +
-      "cortos (longitud ≤ p) no aportan celdas seguras.",
+    hint: "rule_blocks_distribution_hint",
     supportsMultipleClues: true,
 
     /**
@@ -131,4 +128,4 @@ window.CronogramApp = window.CronogramApp || {};
   };
 
   app.registerRule(rule);
-})(window.CronogramApp);
+})(window.NonogramApp);

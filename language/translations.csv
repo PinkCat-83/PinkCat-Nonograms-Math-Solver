@@ -1,0 +1,53 @@
+﻿key;Español;English;Français
+app_title;Entrenador de Nonogramas;Nonogram Trainer;Entraîneur de Nonogrammes
+app_subtitle;Practica las reglas de deducción casilla a casilla;Practice deduction rules, cell by cell;Entraînez-vous aux règles de déduction, case par case
+board_panel_title;Tablero;Board;Grille
+board_panel_aria_label;Tablero;Board;Grille
+board_rows_label;Filas;Rows;Lignes
+board_cols_label;Columnas;Columns;Colonnes
+board_generate_btn;Generar tablero;Generate board;Générer la grille
+board_clear_all_btn;Desactivar todo;Turn all off;Tout désactiver
+board_select_prompt;Selecciona una fila o una columna en el tablero para empezar.;Select a row or column on the board to get started.;Sélectionnez une ligne ou une colonne sur la grille pour commencer.
+board_instructions_html;Haz clic en la cabecera de una fila (izquierda) o columna (arriba) para abrir la ventana emergente y escribir sus pistas separadas por espacio (ej. <code>1 5 6</code>). La ventana muestra la suma introducida y la longitud total de la línea.;Click a row header (left) or column header (top) to open the popup and type its clues separated by spaces (e.g. <code>1 5 6</code>). The popup shows the sum you've typed against the line's total length.;Cliquez sur l'en-tête d'une ligne (à gauche) ou d'une colonne (en haut) pour ouvrir la fenêtre et saisir ses indices séparés par des espaces (ex. <code>1 5 6</code>). La fenêtre affiche la somme saisie et la longueur totale de la ligne.
+scenario_label;Plantillas de prueba (solo lectura);Test scenarios (read-only);Scénarios de test (lecture seule)
+scenario_loading;Cargando plantillas…;Loading scenarios…;Chargement des scénarios…
+scenario_placeholder;Elige una plantilla…;Choose a scenario…;Choisissez un scénario…
+scenario_load_btn;Cargar;Load;Charger
+scenario_load_error_option;No se pudieron cargar las plantillas;Couldn't load the scenarios;Impossible de charger les scénarios
+scenario_load_error_console;No se pudieron cargar las plantillas de prueba:;Couldn't load the test scenarios:;Impossible de charger les scénarios de test :
+scenario_not_loaded;No se pudo cargar la plantilla "{name}".;Couldn't load the "{name}" scenario.;Impossible de charger le scénario « {name} ».
+scenario_loaded;Plantilla "{name}" cargada.;"{name}" scenario loaded.;Scénario « {name} » chargé.
+rules_panel_title;Reglas;Rules;Règles
+rules_panel_aria_label;Reglas;Rules;Règles
+rules_hint_html;Cada regla es un interruptor: al activarla, recorre <strong>todas</strong> las filas y columnas del tablero y pinta las casillas seguras allí donde su condición se cumpla. Al desactivarla, borra solo lo que ella había pintado. Cualquier cambio en las pistas vuelve a recorrer el tablero entero con las reglas que sigan activas.;Each rule is a switch: turning it on sweeps <strong>every</strong> row and column on the board and paints the cells its condition can guarantee. Turning it off only clears what it had painted. Any change to the clues re-sweeps the whole board with whichever rules are still on.;Chaque règle est un interrupteur : l'activer parcourt <strong>toutes</strong> les lignes et colonnes de la grille et colorie les cases que sa condition peut garantir. La désactiver n'efface que ce qu'elle avait colorié. Tout changement dans les indices relance un parcours complet de la grille avec les règles encore actives.
+legend_title;Leyenda;Legend;Légende
+legend_aria_label;Leyenda de símbolos usados en las fórmulas;Legend of symbols used in the formulas;Légende des symboles utilisés dans les formules
+legend_n;valor de una pista (longitud de un bloque);value of one clue (length of a block);valeur d'un indice (longueur d'un bloc)
+legend_total;longitud de la fila o columna;length of the row or column;longueur de la ligne ou de la colonne
+legend_k;número de bloques (pistas) de la línea;number of blocks (clues) in the line;nombre de blocs (indices) de la ligne
+legend_p;margen de movimiento disponible (holgura);available slack (room to move);marge de mouvement disponible
+legend_sigma;suma de los valores de todas las pistas de la línea;sum of all the clue values in the line;somme de toutes les valeurs d'indices de la ligne
+rule_activated_one;Regla "{name}" activada (aplicada en {count} línea).;"{name}" rule turned on (applied to {count} line).;Règle « {name} » activée (appliquée à {count} ligne).
+rule_activated_other;Regla "{name}" activada (aplicada en {count} líneas).;"{name}" rule turned on (applied to {count} lines).;Règle « {name} » activée (appliquée à {count} lignes).
+rule_deactivated;Regla "{name}" desactivada.;"{name}" rule turned off.;Règle « {name} » désactivée.
+line_row;Fila;Row;Ligne
+line_col;Columna;Column;Colonne
+line_info;{lineLabel} {index} · pistas: {clues} · suma = {sum} · longitud = {total};{lineLabel} {index} · clues: {clues} · sum = {sum} · length = {total};{lineLabel} {index} · indices : {clues} · somme = {sum} · longueur = {total}
+line_undefined;sin definir;not set;non défini
+line_sum_exceeds; · ¡la suma de las pistas supera la longitud de la línea!; · the sum of the clues is bigger than the line's length!; · la somme des indices dépasse la longueur de la ligne !
+clue_editor_label;Pistas (separadas por espacio);Clues (space-separated);Indices (séparés par des espaces)
+clue_editor_placeholder;ej. 1 5 6;e.g. 1 5 6;ex. 1 5 6
+clue_editor_sum_info;Suma introducida: {sum} · Longitud de la línea: {total};Sum entered: {sum} · Line length: {total};Somme saisie : {sum} · Longueur de la ligne : {total}
+clue_editor_confirm_btn;Aceptar;OK;Valider
+clue_editor_title_for_line;Pistas de la {lineLabel};Clues for {lineLabel};Indices de {lineLabel}
+aria_edit_row;Editar pistas de la fila {index};Edit clues for row {index};Modifier les indices de la ligne {index}
+aria_edit_col;Editar pistas de la columna {index};Edit clues for column {index};Modifier les indices de la colonne {index}
+locale_switcher_label;Idioma;Language;Langue
+rule_block_complete_name;Norma completa;Complete rule;Règle complète
+rule_block_complete_hint;Si n = total de la fila/columna, se pinta toda la línea.;If n equals the row/column's total, the whole line gets painted.;Si n = total de la ligne/colonne, toute la ligne est coloriée.
+rule_block_greater_half_name;Norma mayor que la mitad;Greater-than-half rule;Règle supérieure à la moitié
+rule_block_greater_half_hint;Si total/2 < n y n < total, se pintan las celdas centrales garantizadas.;If total/2 < n and n < total, the guaranteed central cells get painted.;Si total/2 < n et n < total, les cases centrales garanties sont coloriées.
+rule_blocks_plus_gaps_name;Norma suma de bloques y espacios;Blocks-plus-gaps rule;Règle somme des blocs et espaces
+rule_blocks_plus_gaps_hint;Si la suma de todos los bloques de la línea más los huecos obligatorios entre ellos (uno menos que el número de bloques) es igual al total, cada bloque tiene una única posición posible y se pinta.;If the sum of all the line's blocks plus the mandatory gaps between them (one fewer than the number of blocks) equals the total, every block has exactly one possible position and gets painted.;Si la somme de tous les blocs de la ligne plus les espaces obligatoires entre eux (un de moins que le nombre de blocs) est égale au total, chaque bloc n'a qu'une seule position possible et est colorié.
+rule_blocks_distribution_name;Norma distribución con suma mayor que la mitad;Distribution rule (sum greater than half);Règle de distribution (somme supérieure à la moitié)
+rule_blocks_distribution_hint;Con varios bloques, el margen de movimiento compartido (p) puede desplazarse a un lado u otro. Cada bloque más largo que p tiene un tramo central garantizado — los bloques cortos (longitud ≤ p) no aportan celdas seguras.;With several blocks, the shared slack (p) can shift to either side. Any block longer than p has a guaranteed central stretch — short blocks (length ≤ p) contribute no safe cells.;Avec plusieurs blocs, la marge de mouvement partagée (p) peut se déplacer d'un côté ou de l'autre. Tout bloc plus long que p a une portion centrale garantie — les blocs courts (longueur ≤ p) n'apportent aucune case sûre.

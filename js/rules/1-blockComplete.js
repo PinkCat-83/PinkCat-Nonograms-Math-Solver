@@ -4,17 +4,17 @@
  * If the clue number (n) equals the total length of the line
  * (row or column), then every cell in that line must be painted.
  */
-window.CronogramApp = window.CronogramApp || {};
+window.NonogramApp = window.NonogramApp || {};
 
 (function (app) {
   "use strict";
 
   const rule = {
     id: "block-complete",
-    name: "Norma completa",
+    name: "rule_block_complete_name",
     color: "#c0392b",
     condition: "n = total",
-    hint: "Si n = total de la fila/columna, se pinta toda la línea.",
+    hint: "rule_block_complete_hint",
 
     /**
      * The rule only makes sense when the clue fills the whole line.
@@ -38,4 +38,4 @@ window.CronogramApp = window.CronogramApp || {};
   };
 
   app.registerRule(rule);
-})(window.CronogramApp);
+})(window.NonogramApp);

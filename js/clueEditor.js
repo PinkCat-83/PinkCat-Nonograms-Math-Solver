@@ -6,7 +6,7 @@
  * length of the line, so the person can see immediately whether it
  * still fits.
  */
-window.CronogramApp = window.CronogramApp || {};
+window.NonogramApp = window.NonogramApp || {};
 
 (function (app) {
   "use strict";
@@ -14,6 +14,7 @@ window.CronogramApp = window.CronogramApp || {};
   let overlayElement = null;
   let popupElement = null;
   let titleElement = null;
+  let labelTextElement = null;
   let inputElement = null;
   let sumInfoElement = null;
   let confirmButton = null;
@@ -40,14 +41,17 @@ window.CronogramApp = window.CronogramApp || {};
 
     const label = document.createElement("label");
     label.className = "clue-popup__label";
-    label.textContent = "Pistas (separadas por espacio)";
+
+    labelTextElement = document.createElement("span");
+    labelTextElement.textContent = app.i18n.t("clue_editor_label");
+    label.appendChild(labelTextElement);
 
     inputElement = document.createElement("input");
     inputElement.type = "text";
     inputElement.inputMode = "numeric";
     inputElement.autocomplete = "off";
     inputElement.className = "clue-popup__input";
-    inputElement.placeholder = "ej. 1 5 6";
+    inputElement.placeholder = app.i18n.t("clue_editor_placeholder");
     label.appendChild(inputElement);
 
     sumInfoElement = document.createElement("p");
@@ -59,7 +63,7 @@ window.CronogramApp = window.CronogramApp || {};
     confirmButton = document.createElement("button");
     confirmButton.type = "button";
     confirmButton.className = "btn btn--primary";
-    confirmButton.textContent = "Aceptar";
+    confirmButton.textContent = app.i18n.t("clue_editor_confirm_btn");
 
     actions.appendChild(confirmButton);
 
@@ -110,7 +114,7 @@ window.CronogramApp = window.CronogramApp || {};
     const sum = values.reduce((accumulator, value) => accumulator + value, 0);
     const isValid = sum <= activeTotal;
 
-    sumInfoElement.textContent = `Suma introducida: ${sum} · Longitud de la línea: ${activeTotal}`;
+    sumInfoElement.textContent = app.i18n.t("clue_editor_sum_info", { sum, total: activeTotal });
     sumInfoElement.classList.toggle("is-invalid", !isValid);
   }
 
@@ -145,6 +149,9 @@ window.CronogramApp = window.CronogramApp || {};
     ensureBuilt();
 
     titleElement.textContent = options.title;
+    labelTextElement.textContent = app.i18n.t("clue_editor_label");
+    inputElement.placeholder = app.i18n.t("clue_editor_placeholder");
+    confirmButton.textContent = app.i18n.t("clue_editor_confirm_btn");
     activeTotal = options.total;
     activeOnConfirm = options.onConfirm;
     inputElement.value = options.initialValues.join(" ");
@@ -159,4 +166,4 @@ window.CronogramApp = window.CronogramApp || {};
   }
 
   app.ClueEditor = { open };
-})(window.CronogramApp);
+})(window.NonogramApp);

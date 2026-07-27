@@ -3,7 +3,7 @@
  * Every module attaches itself to this single object so that
  * plain <script> tags can share state without a bundler.
  */
-window.CronogramApp = window.CronogramApp || {};
+window.NonogramApp = window.NonogramApp || {};
 
 (function (app) {
   "use strict";
@@ -14,9 +14,11 @@ window.CronogramApp = window.CronogramApp || {};
    *
    * A rule object must implement:
    *   - id: string, unique identifier
-   *   - name: string, human readable name (Spanish, shown in the UI)
+   *   - name: string, a translation KEY (e.g. "rule_block_complete_name"),
+   *       resolved to display text via `app.i18n.t()` — the actual text
+   *       lives in language/translations.csv, not here.
    *   - color: string, CSS color used to paint matching cells
-   *   - hint: string, short explanation shown in the UI
+   *   - hint: string, a translation KEY (same convention as `name`)
    *   - isApplicable(n, total): boolean, whether the rule can be used
    *   - computePaintMask(n, total): boolean[] of length `total`,
    *       true at positions that must be painted
@@ -31,6 +33,11 @@ window.CronogramApp = window.CronogramApp || {};
    *       same line at once (e.g. "several clues + mandatory gaps fill
    *       the line exactly"), as opposed to rules that only ever look
    *       at lines with a single clue number.
+   *
+   * `condition` (the math formula, e.g. "n = total") is NOT translated
+   * — it only ever uses variable names (n, total, k, p, Σ), which read
+   * the same in every supported language, so it isn't in the CSV at
+   * all and stays a plain literal string here.
    */
   app.rules = app.rules || [];
 
@@ -54,4 +61,4 @@ window.CronogramApp = window.CronogramApp || {};
 
     app.rules.push(rule);
   };
-})(window.CronogramApp);
+})(window.NonogramApp);
