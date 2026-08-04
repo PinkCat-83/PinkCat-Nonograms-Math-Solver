@@ -313,6 +313,22 @@ html, body {
   transition: background 0.12s ease;
 }
 
+/* Row headers: numbers vertically centered (default align-items above),
+   but pushed to the right edge of the cell so they sit right next to
+   the grid, the way row clues read in a printed nonogram. */
+.line-header[data-line-type="row"] {
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+/* Column headers: numbers horizontally centered (default justify-content
+   above), but pushed to the bottom edge of the cell so they sit right
+   above the grid. */
+.line-header[data-line-type="col"] {
+  align-items: flex-end;
+  padding-bottom: 4px;
+}
+
 /* Same every-5 grouping as the grid, but softer here: the header's job
    is to stay legible, so a tinted background carries the grouping
    instead of a hard line, plus a thin (not thick) separator to align

@@ -48,7 +48,11 @@ window.NonogramApp = window.NonogramApp || {};
 
     inputElement = document.createElement("input");
     inputElement.type = "text";
-    inputElement.inputMode = "numeric";
+    // Deliberately NOT inputMode "numeric": on mobile that swaps in a
+    // digits-only keypad with no space key, which makes it impossible
+    // to separate multiple clues (e.g. "1 5 6"). The default keyboard
+    // (still filtered by parseValues() on confirm/live-sum) keeps the
+    // space key available on phones and tablets.
     inputElement.autocomplete = "off";
     inputElement.className = "clue-popup__input";
     inputElement.placeholder = app.i18n.t("clue_editor_placeholder");
