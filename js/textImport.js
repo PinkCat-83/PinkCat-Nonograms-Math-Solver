@@ -214,6 +214,7 @@ window.NonogramApp = window.NonogramApp || {};
     elements.textarea.placeholder = t("import_placeholder").replace(/\\n/g, "\n");
     elements.textarea.setAttribute("aria-label", t("import_title"));
     elements.importBtn.textContent = t("import_btn");
+    elements.clearBtn.textContent = t("import_clear_btn");
     elements.copyBtn.textContent = t("import_copy_prompt_btn");
     elements.promptSummary.textContent = t("import_show_prompt");
     elements.promptText.textContent = getPrompt();
@@ -233,6 +234,7 @@ window.NonogramApp = window.NonogramApp || {};
       hint: document.getElementById("import-hint"),
       textarea: document.getElementById("import-textarea"),
       importBtn: document.getElementById("import-btn"),
+      clearBtn: document.getElementById("import-clear-btn"),
       copyBtn: document.getElementById("import-copy-prompt-btn"),
       promptDetails: document.getElementById("import-prompt-details"),
       promptSummary: document.getElementById("import-prompt-summary"),
@@ -246,6 +248,11 @@ window.NonogramApp = window.NonogramApp || {};
       window.setTimeout(importFromTextarea, 0);
     });
     elements.importBtn.addEventListener("click", importFromTextarea);
+    // Only empties the text box: the board that was already loaded stays as it is.
+    elements.clearBtn.addEventListener("click", () => {
+      elements.textarea.value = "";
+      elements.textarea.focus();
+    });
     elements.copyBtn.addEventListener("click", copyPrompt);
   }
 

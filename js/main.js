@@ -11,7 +11,7 @@ window.NonogramApp = window.NonogramApp || {};
   const DEFAULT_ROWS = 15;
   const DEFAULT_COLS = 15;
   const FLASH_DURATION_MS = 250;
-  const SCENARIOS_URL = "json/scenarios.json?v=20261019b";
+  const SCENARIOS_URL = "json/scenarios.json?v=20261019e";
 
   let rowsInput;
   let colsInput;
