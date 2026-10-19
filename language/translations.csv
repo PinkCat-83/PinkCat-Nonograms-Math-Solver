@@ -65,3 +65,5 @@ import_warning_lines; Atención: {count} línea(s) no caben en su longitud ({lin
 import_error_no_sections;No se encontraron las secciones COLS y ROWS en el texto.;Couldn't find the COLS and ROWS sections in the text.;Sections COLS et ROWS introuvables dans le texte.
 import_error_empty_section;La sección {section} está vacía.;The {section} section is empty.;La section {section} est vide.
 import_error_too_big;El tablero importado ({rows}×{cols}) supera el máximo de {max}×{max}.;The imported board ({rows}×{cols}) exceeds the {max}×{max} maximum.;La grille importée ({rows}×{cols}) dépasse le maximum de {max}×{max}.
+theme_switch_to_dark;Cambiar a modo oscuro;Switch to dark mode;Passer en mode sombre
+theme_switch_to_light;Cambiar a modo claro;Switch to light mode;Passer en mode clair

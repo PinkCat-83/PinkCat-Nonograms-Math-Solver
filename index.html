@@ -4,7 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Entrenador de Nonogramas</title>
-<link rel="stylesheet" href="css/style.css?v=20261019c">
+<meta name="color-scheme" content="light dark">
+<script>
+  // Applies a theme picked by hand before the first paint (no light flash).
+  try {
+    var savedTheme = localStorage.getItem("nonogram-theme");
+    if (savedTheme === "light" || savedTheme === "dark") {
+      document.documentElement.dataset.theme = savedTheme;
+    }
+  } catch (e) {}
+</script>
+<link rel="stylesheet" href="css/style.css?v=20261019d">
 </head>
 <body>
 
@@ -14,11 +24,14 @@
       <h1 id="app-title">Entrenador de Nonogramas</h1>
       <p id="app-subtitle">Practica las reglas de deducción casilla a casilla</p>
     </div>
-    <div class="locale-switcher">
-      <label for="locale-select" class="sr-only">Idioma</label>
-      <select id="locale-select">
-        <option value="es">Español</option>
-      </select>
+    <div class="header-controls">
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false"></button>
+      <div class="locale-switcher">
+        <label for="locale-select" class="sr-only">Idioma</label>
+        <select id="locale-select">
+          <option value="es">Español</option>
+        </select>
+      </div>
     </div>
   </header>
 
@@ -123,15 +136,16 @@
 
   </main>
 
-  <script src="js/i18n.js?v=20261019c"></script>
-  <script src="js/ruleManager.js?v=20261019c"></script>
-  <script src="js/rules/1-blockComplete.js?v=20261019c"></script>
-  <script src="js/rules/2-blockGreaterHalf.js?v=20261019c"></script>
-  <script src="js/rules/3-blocksPlusGaps.js?v=20261019c"></script>
-  <script src="js/rules/4-blocksGreaterHalf.js?v=20261019c"></script>
-  <script src="js/clueEditor.js?v=20261019c"></script>
-  <script src="js/textImport.js?v=20261019c"></script>
-  <script src="js/grid.js?v=20261019c"></script>
-  <script src="js/main.js?v=20261019c"></script>
+  <script src="js/i18n.js?v=20261019d"></script>
+  <script src="js/theme.js?v=20261019d"></script>
+  <script src="js/ruleManager.js?v=20261019d"></script>
+  <script src="js/rules/1-blockComplete.js?v=20261019d"></script>
+  <script src="js/rules/2-blockGreaterHalf.js?v=20261019d"></script>
+  <script src="js/rules/3-blocksPlusGaps.js?v=20261019d"></script>
+  <script src="js/rules/4-blocksGreaterHalf.js?v=20261019d"></script>
+  <script src="js/clueEditor.js?v=20261019d"></script>
+  <script src="js/textImport.js?v=20261019d"></script>
+  <script src="js/grid.js?v=20261019d"></script>
+  <script src="js/main.js?v=20261019d"></script>
 </body>
 </html>

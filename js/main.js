@@ -105,6 +105,7 @@ window.NonogramApp = window.NonogramApp || {};
     colsInput.value = String(initialCols);
     app.Grid.generate(initialRows, initialCols);
 
+    app.Theme.init();
     applyStaticTranslations();
     populateLocaleSelect();
     renderRuleCards();
@@ -242,6 +243,7 @@ window.NonogramApp = window.NonogramApp || {};
    */
   function handleLocaleChange(_locale) {
     applyStaticTranslations();
+    app.Theme.applyTranslations();
     app.TextImport.applyTranslations();
     populateLocaleSelect();
     renderRuleCards();
