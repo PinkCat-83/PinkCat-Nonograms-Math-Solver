@@ -19,7 +19,7 @@ window.NonogramApp = window.NonogramApp || {};
 (function (app) {
   "use strict";
 
-  const CSV_URL = "language/translations.csv";
+  const CSV_URL = "language/translations.csv?v=20261019b";
   const CSV_DELIMITER = ";";
   const STORAGE_KEY = "nonogram-locale";
   const DEFAULT_LOCALE = "es";

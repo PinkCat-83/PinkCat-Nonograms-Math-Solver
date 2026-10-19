@@ -11,7 +11,7 @@ window.NonogramApp = window.NonogramApp || {};
   const DEFAULT_ROWS = 15;
   const DEFAULT_COLS = 15;
   const FLASH_DURATION_MS = 250;
-  const SCENARIOS_URL = "json/scenarios.json";
+  const SCENARIOS_URL = "json/scenarios.json?v=20261019b";
 
   let rowsInput;
   let colsInput;
@@ -97,7 +97,13 @@ window.NonogramApp = window.NonogramApp || {};
     app.Grid.init(document.getElementById("grid-wrapper"));
     app.Grid.onSelectionChange(updateActiveLineInfo);
     app.Grid.onActiveRulesChange(updateRuleCardsActiveState);
-    app.Grid.generate(DEFAULT_ROWS, DEFAULT_COLS);
+    // The first board always uses whatever the size inputs show, so the
+    // inputs and the generated board can never disagree.
+    const initialRows = clampDimension(parseInt(rowsInput.value, 10));
+    const initialCols = clampDimension(parseInt(colsInput.value, 10));
+    rowsInput.value = String(initialRows);
+    colsInput.value = String(initialCols);
+    app.Grid.generate(initialRows, initialCols);
 
     applyStaticTranslations();
     populateLocaleSelect();
@@ -113,6 +119,18 @@ window.NonogramApp = window.NonogramApp || {};
     scenarioSelect.addEventListener("change", updateLoadScenarioBtnState);
     loadScenarioBtn.addEventListener("click", handleLoadScenarioClick);
     loadScenarios();
+
+    app.TextImport.init({
+      onImported: (scenario) => {
+        rowsInput.value = String(scenario.rows);
+        colsInput.value = String(scenario.cols);
+        updateActiveLineInfo(null);
+      },
+      onMessage: (text, isError) => {
+        activeLineInfoElement.textContent = text;
+        activeLineInfoElement.classList.toggle("is-invalid", isError);
+      },
+    });
 
     gridWrapperElement.addEventListener("mousemove", handleGridMouseMove);
     gridWrapperElement.addEventListener("mouseleave", hideHoverCoordinate);
@@ -224,6 +242,7 @@ window.NonogramApp = window.NonogramApp || {};
    */
   function handleLocaleChange(_locale) {
     applyStaticTranslations();
+    app.TextImport.applyTranslations();
     populateLocaleSelect();
     renderRuleCards();
     updateRuleCardsActiveState(currentActiveRuleIds);

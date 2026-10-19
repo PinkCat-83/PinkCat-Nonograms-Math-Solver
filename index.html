@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Entrenador de Nonogramas</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20261019c">
 </head>
 <body>
 
@@ -32,11 +32,11 @@
       <form class="grid-config" id="grid-config-form">
         <label class="grid-config__field">
           <span id="rows-label">Filas</span>
-          <input type="number" id="rows-input" min="1" max="25" value="15">
+          <input type="number" id="rows-input" autocomplete="off" min="1" max="25" value="15">
         </label>
         <label class="grid-config__field">
           <span id="cols-label">Columnas</span>
-          <input type="number" id="cols-input" min="1" max="25" value="15">
+          <input type="number" id="cols-input" autocomplete="off" min="1" max="25" value="15">
         </label>
         <button type="submit" id="generate-grid-btn" class="btn btn--primary">Generar tablero</button>
         <button type="button" id="clear-grid-btn" class="btn btn--ghost">Desactivar todo</button>
@@ -51,6 +51,20 @@
         </label>
         <button type="button" id="load-scenario-btn" class="btn btn--ghost" disabled>Cargar</button>
       </div>
+
+      <details class="text-import" id="text-import">
+        <summary id="import-summary">Importar desde texto</summary>
+        <p class="text-import__hint" id="import-hint"></p>
+        <textarea id="import-textarea" class="text-import__textarea" rows="7" spellcheck="false" autocomplete="off"></textarea>
+        <div class="text-import__actions">
+          <button type="button" id="import-btn" class="btn btn--primary">Importar</button>
+          <button type="button" id="import-copy-prompt-btn" class="btn btn--ghost">Copiar prompt para la IA</button>
+        </div>
+        <details class="text-import__prompt" id="import-prompt-details">
+          <summary id="import-prompt-summary">Ver prompt</summary>
+          <pre id="import-prompt-text" class="text-import__prompt-text"></pre>
+        </details>
+      </details>
 
       <p class="active-line-info" id="active-line-info">
         Selecciona una fila o una columna en el tablero para empezar.
@@ -109,14 +123,15 @@
 
   </main>
 
-  <script src="js/i18n.js"></script>
-  <script src="js/ruleManager.js"></script>
-  <script src="js/rules/1-blockComplete.js"></script>
-  <script src="js/rules/2-blockGreaterHalf.js"></script>
-  <script src="js/rules/3-blocksPlusGaps.js"></script>
-  <script src="js/rules/4-blocksGreaterHalf.js"></script>
-  <script src="js/clueEditor.js"></script>
-  <script src="js/grid.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/i18n.js?v=20261019c"></script>
+  <script src="js/ruleManager.js?v=20261019c"></script>
+  <script src="js/rules/1-blockComplete.js?v=20261019c"></script>
+  <script src="js/rules/2-blockGreaterHalf.js?v=20261019c"></script>
+  <script src="js/rules/3-blocksPlusGaps.js?v=20261019c"></script>
+  <script src="js/rules/4-blocksGreaterHalf.js?v=20261019c"></script>
+  <script src="js/clueEditor.js?v=20261019c"></script>
+  <script src="js/textImport.js?v=20261019c"></script>
+  <script src="js/grid.js?v=20261019c"></script>
+  <script src="js/main.js?v=20261019c"></script>
 </body>
 </html>
