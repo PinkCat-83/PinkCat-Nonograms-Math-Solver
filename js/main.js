@@ -8,8 +8,8 @@ window.NonogramApp = window.NonogramApp || {};
 (function (app) {
   "use strict";
 
-  const DEFAULT_ROWS = 10;
-  const DEFAULT_COLS = 10;
+  const DEFAULT_ROWS = 15;
+  const DEFAULT_COLS = 15;
   const FLASH_DURATION_MS = 250;
   const SCENARIOS_URL = "json/scenarios.json";
 
@@ -103,7 +103,7 @@ window.NonogramApp = window.NonogramApp || {};
     populateLocaleSelect();
     renderRuleCards();
     updateActiveLineInfo(null);
-    updateRuleCardsActiveState(new Set());
+    updateRuleCardsActiveState(app.Grid.getActiveRuleIds());
 
     gridConfigForm.addEventListener("submit", handleGenerateGrid);
     clearGridBtn.addEventListener("click", () => {
@@ -138,7 +138,6 @@ window.NonogramApp = window.NonogramApp || {};
 
     app.Grid.generate(rows, cols);
     updateActiveLineInfo(null);
-    updateRuleCardsActiveState(new Set());
   }
 
   /**
@@ -313,7 +312,6 @@ window.NonogramApp = window.NonogramApp || {};
     colsInput.value = String(scenario.cols);
 
     updateActiveLineInfo(null);
-    updateRuleCardsActiveState(new Set());
     activeLineInfoElement.textContent = app.i18n.t("scenario_loaded", { name: scenario.name });
     activeLineInfoElement.classList.remove("is-invalid");
   }

@@ -8,7 +8,7 @@ board_cols_label;Columnas;Columns;Colonnes
 board_generate_btn;Generar tablero;Generate board;Générer la grille
 board_clear_all_btn;Desactivar todo;Turn all off;Tout désactiver
 board_select_prompt;Selecciona una fila o una columna en el tablero para empezar.;Select a row or column on the board to get started.;Sélectionnez une ligne ou une colonne sur la grille pour commencer.
-board_instructions_html;Haz clic en la cabecera de una fila (izquierda) o columna (arriba) para abrir la ventana emergente y escribir sus pistas separadas por espacio (ej. <code>1 5 6</code>). La ventana muestra la suma introducida y la longitud total de la línea.;Click a row header (left) or column header (top) to open the popup and type its clues separated by spaces (e.g. <code>1 5 6</code>). The popup shows the sum you've typed against the line's total length.;Cliquez sur l'en-tête d'une ligne (à gauche) ou d'une colonne (en haut) pour ouvrir la fenêtre et saisir ses indices séparés par des espaces (ex. <code>1 5 6</code>). La fenêtre affiche la somme saisie et la longueur totale de la ligne.
+board_instructions_html;Haz clic en la cabecera de una fila (izquierda) o columna (arriba) para abrir la ventana emergente y escribir sus pistas separadas por espacio, punto o coma (ej. <code>1 5 6</code> o <code>1.5.6</code>). En el móvil se abre directamente el teclado numérico. La ventana muestra la suma introducida y la longitud total de la línea.;Click a row header (left) or column header (top) to open the popup and type its clues separated by a space, dot or comma (e.g. <code>1 5 6</code> or <code>1.5.6</code>). On mobile the numeric keypad opens directly. The popup shows the sum you've typed against the line's total length.;Cliquez sur l'en-tête d'une ligne (à gauche) ou d'une colonne (en haut) pour ouvrir la fenêtre et saisir ses indices séparés par un espace, un point ou une virgule (ex. <code>1 5 6</code> ou <code>1.5.6</code>). Sur mobile, le pavé numérique s'ouvre directement. La fenêtre affiche la somme saisie et la longueur totale de la ligne.
 scenario_label;Plantillas de prueba (solo lectura);Test scenarios (read-only);Scénarios de test (lecture seule)
 scenario_loading;Cargando plantillas…;Loading scenarios…;Chargement des scénarios…
 scenario_placeholder;Elige una plantilla…;Choose a scenario…;Choisissez un scénario…
@@ -35,8 +35,8 @@ line_col;Columna;Column;Colonne
 line_info;{lineLabel} {index} · pistas: {clues} · suma = {sum} · longitud = {total};{lineLabel} {index} · clues: {clues} · sum = {sum} · length = {total};{lineLabel} {index} · indices : {clues} · somme = {sum} · longueur = {total}
 line_undefined;sin definir;not set;non défini
 line_sum_exceeds; · ¡la suma de las pistas supera la longitud de la línea!; · the sum of the clues is bigger than the line's length!; · la somme des indices dépasse la longueur de la ligne !
-clue_editor_label;Pistas (separadas por espacio);Clues (space-separated);Indices (séparés par des espaces)
-clue_editor_placeholder;ej. 1 5 6;e.g. 1 5 6;ex. 1 5 6
+clue_editor_label;Pistas (separadas por espacio, punto o coma);Clues (separated by space, dot or comma);Indices (séparés par espace, point ou virgule)
+clue_editor_placeholder;ej. 1.5.6;e.g. 1.5.6;ex. 1.5.6
 clue_editor_sum_info;Suma introducida: {sum} · Longitud de la línea: {total};Sum entered: {sum} · Line length: {total};Somme saisie : {sum} · Longueur de la ligne : {total}
 clue_editor_confirm_btn;Aceptar;OK;Valider
 clue_editor_title_for_line;Pistas de la {lineLabel};Clues for {lineLabel};Indices de {lineLabel}

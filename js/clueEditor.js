@@ -19,6 +19,11 @@ window.NonogramApp = window.NonogramApp || {};
   let sumInfoElement = null;
   let confirmButton = null;
 
+  // Anything that isn't a digit separates two clues: space, ".", ",",
+  // "-", "+", "*", "#"... so the separator key of any numeric keypad works.
+  const SEPARATOR_PATTERN = /[^0-9]+/;
+  const SEPARATOR_CHAR_PATTERN = /[^0-9]/g;
+
   let activeOnConfirm = null;
   let activeTotal = 0;
 
@@ -48,11 +53,17 @@ window.NonogramApp = window.NonogramApp || {};
 
     inputElement = document.createElement("input");
     inputElement.type = "text";
-    // Deliberately NOT inputMode "numeric": on mobile that swaps in a
-    // digits-only keypad with no space key, which makes it impossible
-    // to separate multiple clues (e.g. "1 5 6"). The default keyboard
-    // (still filtered by parseValues() on confirm/live-sum) keeps the
-    // space key available on phones and tablets.
+    // inputMode "decimal" brings up the numeric keypad on phones and
+    // tablets. Unlike "numeric" (digits only on iOS, no separator at
+    // all), the decimal keypad always includes a "." or "," key, and on
+    // Android usually space and "-" as well. ANY non-digit character is
+    // accepted as a clue separator (see SEPARATOR_PATTERN), so whatever
+    // symbol the person's keypad offers works.
+    inputElement.inputMode = "decimal";
+    inputElement.enterKeyHint = "done";
+    inputElement.setAttribute("autocorrect", "off");
+    inputElement.setAttribute("autocapitalize", "off");
+    inputElement.spellcheck = false;
     inputElement.autocomplete = "off";
     inputElement.className = "clue-popup__input";
     inputElement.placeholder = app.i18n.t("clue_editor_placeholder");
@@ -78,7 +89,7 @@ window.NonogramApp = window.NonogramApp || {};
     overlayElement.appendChild(popupElement);
     document.body.appendChild(overlayElement);
 
-    inputElement.addEventListener("input", updateSumInfo);
+    inputElement.addEventListener("input", handleInput);
     confirmButton.addEventListener("click", confirmAndClose);
 
     // Clicking the dimmed backdrop or pressing Escape closes the popup
@@ -101,13 +112,36 @@ window.NonogramApp = window.NonogramApp || {};
   }
 
   /**
-   * Parses a raw string like "1 5 6" into an array of valid clue numbers.
+   * Shows every separator the person types ("1.5,6") as a plain space
+   * ("1 5 6") so the clues always read the same way. Each character is
+   * replaced one-for-one, so the text length and the caret position stay
+   * exactly where they were.
+   */
+  function handleInput() {
+    const raw = inputElement.value;
+    const normalized = raw.replace(SEPARATOR_CHAR_PATTERN, " ");
+    if (normalized !== raw) {
+      const start = inputElement.selectionStart;
+      const end = inputElement.selectionEnd;
+      inputElement.value = normalized;
+      try {
+        inputElement.setSelectionRange(start, end);
+      } catch (_error) {
+        // Some mobile browsers refuse selection changes mid-composition; harmless.
+      }
+    }
+    updateSumInfo();
+  }
+
+  /**
+   * Parses a raw string like "1 5 6" (or "1.5.6", "1,5,6", "1-5-6"...)
+   * into an array of valid clue numbers.
    * @param {string} text
    * @returns {number[]}
    */
   function parseValues(text) {
     return text
-      .split(/\s+/)
+      .split(SEPARATOR_PATTERN)
       .map((token) => parseInt(token, 10))
       .filter((value) => Number.isInteger(value) && value >= 0);
   }

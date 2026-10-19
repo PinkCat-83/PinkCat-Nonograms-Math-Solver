@@ -32,11 +32,11 @@
       <form class="grid-config" id="grid-config-form">
         <label class="grid-config__field">
           <span id="rows-label">Filas</span>
-          <input type="number" id="rows-input" min="1" max="25" value="10">
+          <input type="number" id="rows-input" min="1" max="25" value="15">
         </label>
         <label class="grid-config__field">
           <span id="cols-label">Columnas</span>
-          <input type="number" id="cols-input" min="1" max="25" value="10">
+          <input type="number" id="cols-input" min="1" max="25" value="15">
         </label>
         <button type="submit" id="generate-grid-btn" class="btn btn--primary">Generar tablero</button>
         <button type="button" id="clear-grid-btn" class="btn btn--ghost">Desactivar todo</button>
@@ -57,7 +57,7 @@
       </p>
       <p class="grid-instructions" id="grid-instructions">
         Haz clic en la cabecera de una fila (izquierda) o columna (arriba) para abrir la
-        ventana emergente y escribir sus pistas separadas por espacio (ej. <code>1 5 6</code>).
+        ventana emergente y escribir sus pistas separadas por espacio, punto o coma (ej. <code>1 5 6</code> o <code>1.5.6</code>).
         La ventana muestra la suma introducida y la longitud total de la línea.
       </p>
 

@@ -53,7 +53,8 @@ window.NonogramApp = window.NonogramApp || {};
     state.colClues = Array.from({ length: colCount }, () => []);
     state.rowHeaderWrappers = [];
     state.colHeaderWrappers = [];
-    state.activeRuleIds = new Set();
+    // Every registered rule starts toggled ON on a fresh board.
+    state.activeRuleIds = new Set(app.rules.map((rule) => rule.id));
     state.manualMarks = Array.from({ length: rowCount }, () => new Array(colCount).fill(null));
 
     gridWrapperElement.innerHTML = "";
@@ -100,6 +101,7 @@ window.NonogramApp = window.NonogramApp || {};
     }
 
     gridWrapperElement.appendChild(gridElement);
+    notifyActiveRulesChange(new Map());
   }
 
   /**
@@ -467,6 +469,11 @@ window.NonogramApp = window.NonogramApp || {};
     });
   }
 
+  /** @returns {Set<string>} a copy of the rule ids currently toggled on. */
+  function getActiveRuleIds() {
+    return new Set(state.activeRuleIds);
+  }
+
   /** Turns every rule off and clears all painted cells. */
   function clearColors() {
     state.activeRuleIds.clear();
@@ -477,9 +484,8 @@ window.NonogramApp = window.NonogramApp || {};
   /**
    * Rebuilds the board at the scenario's size and pre-fills every row
    * and column with its clue numbers. Used by the read-only test-scenario
-   * dropdown. No rules are left active afterwards, same as a plain
-   * "Generar tablero" — the person still has to toggle the rules they
-   * want to see applied.
+   * dropdown. Same as a plain "Generar tablero", every rule starts
+   * active and the board is painted immediately with the loaded clues.
    * @param {{rows: number, cols: number, rowClues: number[][], colClues: number[][]}} scenario
    * @returns {boolean} whether the scenario was valid and got loaded
    */
@@ -509,6 +515,9 @@ window.NonogramApp = window.NonogramApp || {};
     for (let col = 0; col < state.colCount; col += 1) {
       renderClueDisplay("col", col);
     }
+
+    // Rules start active on every new board, so paint the loaded clues right away.
+    notifyActiveRulesChange(repaintBoard());
 
     return true;
   }
@@ -669,5 +678,6 @@ window.NonogramApp = window.NonogramApp || {};
     onSelectionChange,
     onActiveRulesChange,
     getSelectionSummary,
+    getActiveRuleIds,
   };
 })(window.NonogramApp);
